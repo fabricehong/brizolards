@@ -13,8 +13,13 @@ const routes: Routes = [
       children: [
           {
               path: '',
-              redirectTo: '/home/(map:map)',
+              redirectTo: '/home/(chats:chats)',
               pathMatch: 'full',
+          },
+          {
+              path: 'chats',
+              outlet: 'chats',
+              component: ChatsPage,
           },
           {
               path: 'map',
@@ -27,11 +32,6 @@ const routes: Routes = [
               component: EventsPage,
           },
           {
-              path: 'chats',
-              outlet: 'chats',
-              component: ChatsPage,
-          },
-          {
               path: 'feed',
               outlet: 'feed',
               component: FeedPage,
@@ -40,7 +40,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/home/(map:map)',
+        redirectTo: '/home/(chats:chats)',
         pathMatch: 'full'
     }
 ];
