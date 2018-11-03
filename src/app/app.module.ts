@@ -8,8 +8,8 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {CoreModule} from './core/core.module';
-import {ProfilPageModule} from './profil/profil.module';
+import {CoreModule} from './pages/core/core.module';
+import {ProfilPageModule} from './pages/profil/profil.module';
 
 @NgModule({
   declarations: [AppComponent],

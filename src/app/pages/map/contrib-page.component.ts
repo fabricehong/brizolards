@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-map',
-  templateUrl: './map.page.html',
-  styleUrls: ['./map.page.scss'],
+  templateUrl: './contrib-page.component.html',
+  styleUrls: ['./contrib-page.component.scss'],
 })
-export class MapPage implements OnInit {
+export class ContribPage implements OnInit {
     lat = 46.5196535;
     lng = 6.6322734;
   constructor() { }

@@ -4,7 +4,7 @@ import {HomePage} from './home.page';
 import {EventsPage} from '../events/events.page';
 import {ChatsPage} from '../chats/chats.page';
 import {FeedPage} from '../feed/feed.page';
-import {MapPage} from '../map/map.page';
+import {ContribPage} from '../map/contrib-page.component';
 
 const routes: Routes = [
     {
@@ -22,9 +22,9 @@ const routes: Routes = [
               component: ChatsPage,
           },
           {
-              path: 'map',
-              outlet: 'map',
-              component: MapPage,
+              path: 'contrib',
+              outlet: 'contrib',
+              component: ContribPage,
           },
           {
               path: 'events',
