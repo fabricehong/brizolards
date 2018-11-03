@@ -1,0 +1,13 @@
+<app-page title="Autour">
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button routerDirection="forward" [routerLink]="'/add-chat'"><ion-icon name="chatbubbles"></ion-icon></ion-fab-button>
+            <ion-fab-button routerDirection="forward" [routerLink]="'/add-event'"><ion-icon name="calendar"></ion-icon></ion-fab-button>
+            <ion-fab-button routerDirection="forward" [routerLink]="'/add-service'"><ion-icon name="logo-usd"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+</app-page>

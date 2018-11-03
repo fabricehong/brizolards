@@ -1,12 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
-</ion-content>
+<ion-tabs>
+    <ion-tab label="Map" icon="map" href="/home/(map:map)">
+        <ion-router-outlet name="map"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Evénements" icon="calendar" href="/home/(events:events)">
+        <ion-router-outlet name="events"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Discussions" icon="chatbubbles" href="/home/(chats:chats)">
+        <ion-router-outlet name="chats"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Actualité" icon="list" href="/home/(feed:feed)">
+        <ion-router-outlet name="feed"></ion-router-outlet>
+    </ion-tab>
+</ion-tabs>
