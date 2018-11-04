@@ -1,5 +1,8 @@
 <app-page title="Contributions">
     <div>{{name}}</div>
+    <ng-container *ngIf="!dinerAndContributions">
+        <ion-spinner name="crescent"></ion-spinner>
+    </ng-container>
     <ng-container *ngIf="dinerAndContributions">
         <h1>{{dinerAndContributions.diner.name}}</h1>
         <div>{{dinerAndContributions.diner.description}}</div>

@@ -9,13 +9,13 @@
     Ajout de "{{ingredient.name}}"
     <ion-item>
       <ion-label>Name</ion-label>
-      <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss">
+      <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss" [(ngModel)]="contribution.userId">
         <ion-select-option [value]="user.id" *ngFor="let user of users">{{user.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Quantité</ion-label>
-      <ion-input type="number" placeholder="manque {{recommendedQty}} {{ingredient.units}}"></ion-input>
+      <ion-input type="number" placeholder="manque {{recommendedQty}} {{ingredient.units}}" [(ngModel)]="contribution.unitContribution"></ion-input>
     </ion-item>
 
   </ng-container>

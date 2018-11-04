@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import DinerAndContributions from './dtos/dinerAndContributions';
 import {forkJoin, Observable, of} from 'rxjs';
 import IngredientItem from './dtos/ingredientItem';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import Diner from "./models/diner";
 import Contribution from "./models/unitContribution";
@@ -99,7 +99,10 @@ export class DinerDashboardService {
       );
   }
 
-  sendContribution(dinerId: string, ingredientId: string, contribution: number): Observable<void> {
-    return of();
+  sendContribution(contribution: Contribution): Observable<Object> {
+      const httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
+    return this.http.post('api/contributions', contribution, httpOptions);
   }
 }

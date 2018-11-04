@@ -1,6 +1,7 @@
 import Diner from '../models/diner';
 import Contribution from '../models/unitContribution';
 import Participant from '../models/participant';
+import uuid from 'uuid/v1';
 
 export const mockDiner: Diner = {
     id: 'xxx',
@@ -35,12 +36,14 @@ export const mockDiner: Diner = {
 
 export const mockContributions: Contribution[] = [
     {
+        id: uuid(),
         userId: 'p1',
         unitContribution: 2,
         dinerId: 'xxx',
         ingredientId: 'idVin'
     },
     {
+        id: uuid(),
         userId: 'p2',
         unitContribution: 400,
         dinerId: 'xxx',
