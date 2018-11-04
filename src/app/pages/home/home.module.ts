@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
 import {HomeRoutingModule} from './home-routing.module';
 import {CoreModule} from '../core/core.module';
-import {MapPageModule} from '../map/contrib.module';
+import {MapPageModule} from '../contrib/contrib.module';
 import {EventsPageModule} from '../events/events.module';
 import {ChatsPageModule} from '../chats/chats.module';
 import {FeedPageModule} from '../feed/feed.module';

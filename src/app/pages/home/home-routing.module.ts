@@ -4,7 +4,7 @@ import {HomePage} from './home.page';
 import {EventsPage} from '../events/events.page';
 import {ChatsPage} from '../chats/chats.page';
 import {FeedPage} from '../feed/feed.page';
-import {ContribPage} from '../map/contrib-page.component';
+import {ContribPage} from '../contrib/contrib-page.component';
 
 const routes: Routes = [
     {
