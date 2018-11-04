@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'add-chat', loadChildren: './pages//add-chat/add-chat.module#AddChatPageModule' },
   { path: 'add-event', loadChildren: './pages//add-event/add-event.module#AddEventPageModule' },
   { path: 'add-service', loadChildren: './pages//add-service/add-service.module#AddServicePageModule' },
+  { path: 'contributeModal', loadChildren: './pages/contribute-modal/contribute-modal.module#ContributeModalPageModule' },
 ];
 
 @NgModule({

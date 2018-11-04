@@ -1,21 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DinerService} from '../../diner.service';
 import DinerAndContributions from '../../dtos/dinerAndContributions';
+import {get, set} from 'idb-keyval';
+import {ModalController} from "@ionic/angular";
+import {ContributeModalPage} from "../contribute-modal/contribute-modal.page";
 
 @Component({
   selector: 'app-map',
   templateUrl: './contrib-page.component.html',
   styleUrls: ['./contrib-page.component.scss'],
 })
-export class ContribPage implements OnInit {
+export class ContribPage implements OnInit, AfterViewInit {
     dinerAndContributions: DinerAndContributions;
-  constructor(private dinerService: DinerService) { }
+    name: string;
+  constructor(private dinerService: DinerService, public modalController: ModalController) { }
 
   ngOnInit() {
       this.dinerService.getCurrentDiner().subscribe(dinner => this.dinerAndContributions = dinner);
+      /* const result = await get('mystore');
+      this.name = result.toString(); */
   }
 
   get dstring() {
       return this.dinerAndContributions ? JSON.stringify(this.dinerAndContributions, null, 2) : "";
   }
+
+
+    ngAfterViewInit(): void {
+      /* setTimeout(() => {
+          this.name = prompt("salut");
+          set('mystore', this.name);
+      }, 2000); */
+
+    }
+
+    async onContribute(ingredientId: string) {
+        const modal = await this.modalController.create({
+            component: ContributeModalPage,
+            componentProps: { ingredientId }
+        });
+        return await modal.present();
+    }
 }

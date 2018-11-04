@@ -1,4 +1,5 @@
 <app-page title="Contributions">
+    <div>{{name}}</div>
     <ng-container *ngIf="dinerAndContributions">
         <h1>{{dinerAndContributions.diner.name}}</h1>
         <div>{{dinerAndContributions.diner.description}}</div>
@@ -13,7 +14,7 @@
                 <div>
                     {{ingredientItem.contributed}} / {{ingredientItem.required}}
                 </div>
-                <button>Contribuer</button>
+                <ion-button (click)="onContribute(ingredientItem.ingredient.id)" size="small">Contribute</ion-button>
             </li>
         </ul>
         <h2>Participants</h2>

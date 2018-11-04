@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import { ContribPage } from './contrib-page.component';
 import {CoreModule} from '../core/core.module';
+import {ContributeModalPageModule} from "../contribute-modal/contribute-modal.module";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     CoreModule,
+    ContributeModalPageModule,
   ],
   declarations: [ContribPage]
 })
