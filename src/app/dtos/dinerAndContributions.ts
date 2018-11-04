@@ -4,7 +4,8 @@ import Diner from "../models/diner";
 
 export default interface DinerAndContributions {
     diner: Diner,
+    hostName: string,
     ingredientItems: IngredientItem[];
     participationItems: ParticipationItem[];
-    totalPrice: number;
+    pricePerPerson: number;
 }

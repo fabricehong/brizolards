@@ -14,4 +14,8 @@ export class ContribPage implements OnInit {
   ngOnInit() {
       this.dinerService.getCurrentDiner().subscribe(dinner => this.dinerAndContributions = dinner);
   }
+
+  get dstring() {
+      return this.dinerAndContributions ? JSON.stringify(this.dinerAndContributions, null, 2) : "";
+  }
 }

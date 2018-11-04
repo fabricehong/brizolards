@@ -6,10 +6,11 @@ import IngredientItem from './dtos/ingredientItem';
 import {HttpClient} from "@angular/common/http";
 import {concatAll, map, switchMap} from "rxjs/operators";
 import Diner from "./models/diner";
-import Contribution from "./models/contribution";
+import Contribution from "./models/unitContribution";
 import Participant from "./models/participant";
 import ParticipationItem from "./dtos/participationItem";
 import ContributionItem from "./dtos/contributionItem";
+import Ingredient from "./models/ingredient";
 
 @Injectable({
   providedIn: 'root'
@@ -29,22 +30,24 @@ export class DinerService {
                   const diner = dinerRes as Diner;
                   const participants = participantsRes as Participant[];
                   const contributions = contributionsRed as Contribution[];
-                  const ingredientPrices: object = diner.ingredients.reduce((ingredients, ingredient) => {
-                      ingredients[ingredient.id] = ingredient.pricePerPerson;
+                  const ingredientPrices: {[s: string]: Ingredient} = diner.ingredients.reduce((ingredients, ingredient) => {
+                      ingredients[ingredient.id] = ingredient;
                       return ingredients;
                   }, {})
 
-                  const ingredientItems = diner.ingredients.reduce((aggregator: IngredientItem[], ingredient) => {
-                          const contributors = participants.filter(p => contributions.find(c => c.userId === p.id));
-                          const totalContrib = contributions.reduce((total, contr) => total + contr.contribution, 0);
+                  const ingredientItems = diner.ingredients.map((ingredient) => {
+                          const contributors = participants
+                              .filter(p => contributions.find(c => c.userId === p.id));
+                          const totalContrib = contributions
+                              .filter(contrib => contrib.ingredientId === ingredient.id)
+                              .reduce((total, contr) => total + contr.unitContribution, 0);
                           const ingredientItem: IngredientItem = {
                               ingredient: ingredient,
                               contributors: contributors,
                               contributed: totalContrib,
                               required: ingredient.requiredPerPerson * participants.length,
                           }
-                          aggregator.push(ingredientItem);
-                          return aggregator;
+                          return ingredientItem;
                       },
                       []
                   );
@@ -56,8 +59,10 @@ export class DinerService {
                           const moneyParticipation = contributions
                               .filter(contrib => contrib.userId === participant.id)
                               .reduce((total, c) => {
-                                  const ingredientPrice = ingredientPrices[c.ingredientId] ? ingredientPrices[c.ingredientId] : 0;
-                                  return total + c.contribution*ingredientPrice;
+                                  const ingredient: Ingredient = ingredientPrices[c.ingredientId];
+                                  const ingredientPrice = ingredient ? ingredient.pricePerPerson : 0;
+                                  const contribRatioForPerson = c.unitContribution/ingredient.requiredPerPerson;
+                                  return total + contribRatioForPerson * ingredientPrice;
                               }, 0);
 
                           const contributionItems: ContributionItem[] = contributions.map(
@@ -78,15 +83,13 @@ export class DinerService {
                       }
                   );
 
-                  const totalPrice = ingredientItems.reduce((total, ingredientItem) => {
-                      return total + ingredientItem.required * ingredientItem.ingredient.pricePerPerson;
-                  }, 0);
-
+                  const pricePerPerson = diner.ingredients.reduce ((total, ingr) => total + ingr.pricePerPerson, 0);
                   const dinnerAndContribution: DinerAndContributions = {
                       diner: diner,
+                      hostName: participants.find(user => user.id === diner.hostUserId).name,
                       ingredientItems,
                       participationItems,
-                      totalPrice,
+                      pricePerPerson,
                   };
                   return dinnerAndContribution;
               }

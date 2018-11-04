@@ -1,5 +1,5 @@
 import Ingredient from '../models/ingredient';
-import Contribution from '../models/contribution';
+import Contribution from '../models/unitContribution';
 
 export default interface ContributionItem {
     ingredient: Ingredient;

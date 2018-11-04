@@ -1,10 +1,13 @@
 import Diner from '../models/diner';
-import Contribution from '../models/contribution';
+import Contribution from '../models/unitContribution';
 import Participant from '../models/participant';
 
 export const mockDiner: Diner = {
     id: 'xxx',
+    hostUserId: 'p1',
     name: 'mon diner',
+    description: 'Une ptite fondue chez moi',
+    address: 'avenue Louis Vulliemin 14',
     ingredients: [
         {
             id: 'idFromage',
@@ -33,13 +36,13 @@ export const mockDiner: Diner = {
 export const mockContributions: Contribution[] = [
     {
         userId: 'p1',
-        contribution: 2,
+        unitContribution: 2,
         dinerId: 'xxx',
         ingredientId: 'idVin'
     },
     {
         userId: 'p2',
-        contribution: 400,
+        unitContribution: 400,
         dinerId: 'xxx',
         ingredientId: 'idFromage'
     },

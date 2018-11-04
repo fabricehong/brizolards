@@ -1,6 +1,9 @@
 <app-page title="Contributions">
     <ng-container *ngIf="dinerAndContributions">
         <h1>{{dinerAndContributions.diner.name}}</h1>
+        <div>{{dinerAndContributions.diner.description}}</div>
+        <div>chez {{dinerAndContributions.hostName}}</div>
+        <div>Adresse: {{dinerAndContributions.diner.address}}</div>
         <h2>Ingredients:</h2>
         <ul>
             <li *ngFor="let ingredientItem of dinerAndContributions.ingredientItems">
@@ -18,17 +21,19 @@
         <ul>
             <li *ngFor="let participation of dinerAndContributions.participationItems">
                 <div>{{participation.participant.name}}</div>
-                <div>{{participation.moneyParticipation}} / {{dinerAndContributions.totalPrice / dinerAndContributions.participationItems.length}}</div>
+                <div>{{participation.moneyParticipation}} chf / {{dinerAndContributions.pricePerPerson}} chf</div>
                 <ul>
                     <li *ngFor="let contribItem of participation.contributions">
                         <div>{{contribItem.ingredient.name}}</div>
-                        <div>{{contribItem.contribution.contribution}}</div>
+                        <div>{{contribItem.contribution.unitContribution}}</div>
                     </li>
                 </ul>
             </li>
         </ul>
-        <div>Estimated total price: {{dinerAndContributions.totalPrice}}</div>
-        <div>Average price per person: {{dinerAndContributions.totalPrice /
-            dinerAndContributions.participationItems.length}}</div>
+        <div>Estimated total price: {{dinerAndContributions.pricePerPerson * dinerAndContributions.participationItems.length}}</div>
+        <div>Average price per person: {{dinerAndContributions.pricePerPerson}}</div>
     </ng-container>
+    <!--div>
+        {{dstring}}
+    </div-->
 </app-page>
