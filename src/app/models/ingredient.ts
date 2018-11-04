@@ -3,4 +3,5 @@ export default interface Ingredient {
     name: string;
     requiredPerPerson: number;
     units: string;
+    pricePerPerson: number;
 }

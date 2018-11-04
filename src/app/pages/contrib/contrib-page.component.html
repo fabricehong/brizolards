@@ -1,14 +1,34 @@
 <app-page title="Contributions">
-    <h1>{{dinerAndContributions.diner.name}}</h1>
-    <ul>
-        <li *ngFor="let ingredient of dinerAndContributions.diner.ingredients">
-            {{ingredient.name}}
-        </li>
-    </ul>
-    <div>Nombre de personnes: {{dinerAndContributions.participants.length}}</div>
-    <ul>
-        <li *ngFor="let participant of dinerAndContributions.participants">
-            {{participant.name}}
-        </li>
-    </ul>
+    <ng-container *ngIf="dinerAndContributions">
+        <h1>{{dinerAndContributions.diner.name}}</h1>
+        <h2>Ingredients:</h2>
+        <ul>
+            <li *ngFor="let ingredientItem of dinerAndContributions.ingredientItems">
+                <div>
+                    {{ingredientItem.ingredient.name}} : {{ingredientItem.contributors.length}} pers ({{ingredientItem.contributed}})
+                </div>
+                <div>
+                    {{ingredientItem.contributed}} / {{ingredientItem.required}}
+                </div>
+                <button>Contribuer</button>
+            </li>
+        </ul>
+        <h2>Participants</h2>
+        <div>Nombre de personnes: {{dinerAndContributions.participationItems.length}}</div>
+        <ul>
+            <li *ngFor="let participation of dinerAndContributions.participationItems">
+                <div>{{participation.participant.name}}</div>
+                <div>{{participation.moneyParticipation}} / {{dinerAndContributions.totalPrice / dinerAndContributions.participationItems.length}}</div>
+                <ul>
+                    <li *ngFor="let contribItem of participation.contributions">
+                        <div>{{contribItem.ingredient.name}}</div>
+                        <div>{{contribItem.contribution.contribution}}</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div>Estimated total price: {{dinerAndContributions.totalPrice}}</div>
+        <div>Average price per person: {{dinerAndContributions.totalPrice /
+            dinerAndContributions.participationItems.length}}</div>
+    </ng-container>
 </app-page>

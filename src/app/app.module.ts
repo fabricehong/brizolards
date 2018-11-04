@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {HttpClientModule} from '@angular/common/http';
+import {InMemoryDataService} from "./in-memory-data.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,9 @@ import {HttpClientModule} from '@angular/common/http';
       CoreModule,
       ProfilPageModule,
       HttpClientModule,
+      HttpClientInMemoryWebApiModule.forRoot(
+          InMemoryDataService, { dataEncapsulation: false, delay: 500 }
+      ),
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [

@@ -10,18 +10,21 @@ export const mockDiner: Diner = {
             id: 'idFromage',
             name: 'fromage',
             requiredPerPerson: 200,
+            pricePerPerson: 5,
             units: 'g'
         },
         {
             id: 'idPain',
             name: 'pain',
             requiredPerPerson: 100,
+            pricePerPerson: 2,
             units: 'g'
         },
         {
             id: 'idVin',
             name: 'vin',
             requiredPerPerson: 1,
+            pricePerPerson: 10,
             units: 'bouteille'
         },
     ]
