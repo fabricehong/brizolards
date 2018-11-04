@@ -7,6 +7,8 @@ import {IonicModule} from '@ionic/angular';
 
 import {ChatsPage} from './chats.page';
 import {CoreModule} from '../core/core.module';
+import {EmojiPickerComponent} from "../../components/emoji-picker/emoji-picker.component";
+import {RelativeTime} from "../../pipes/relative-time";
 
 const routes: Routes = [
   {
@@ -23,6 +25,6 @@ const routes: Routes = [
     CoreModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ChatsPage]
+  declarations: [ChatsPage, EmojiPickerComponent, RelativeTime]
 })
 export class ChatsPageModule {}

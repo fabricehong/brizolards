@@ -1,12 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DinerDashboardService} from '../../diner-dashboard.service';
 import DinerAndContributions from '../../dtos/dinerAndContributions';
-import {get, set} from 'idb-keyval';
 import {ModalController} from "@ionic/angular";
 import {ContributeModalPage} from "../contribute-modal/contribute-modal.page";
-import Contribution from "../../models/unitContribution";
-import {pipe} from "rxjs";
-import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-map',
@@ -47,7 +43,7 @@ export class ContribPage implements OnInit, AfterViewInit {
         const qty = Math.max(0, recommendedQty);
         const modal = await this.modalController.create({
             component: ContributeModalPage,
-            componentProps: { ingredientId, recommendedQty: qty, submit: this.yo}
+            componentProps: { ingredientId, recommendedQty: qty}
         });
 
         modal.onDidDismiss().then((d: any) => {
