@@ -14,7 +14,7 @@
                 <div>
                     {{ingredientItem.contributed}} / {{ingredientItem.required}}
                 </div>
-                <ion-button (click)="onContribute(ingredientItem.ingredient.id)" size="small">Contribute</ion-button>
+                <ion-button (click)="onContribute(ingredientItem.ingredient.id, ingredientItem.required - ingredientItem.contributed)" size="small">Contribute</ion-button>
             </li>
         </ul>
         <h2>Participants</h2>
@@ -25,8 +25,7 @@
                 <div>{{participation.moneyParticipation}} chf / {{dinerAndContributions.pricePerPerson}} chf</div>
                 <ul>
                     <li *ngFor="let contribItem of participation.contributions">
-                        <div>{{contribItem.ingredient.name}}</div>
-                        <div>{{contribItem.contribution.unitContribution}}</div>
+                        <div>{{contribItem.ingredient.name}} ({{contribItem.contribution.unitContribution}} {{contribItem.ingredient.units}})</div>
                     </li>
                 </ul>
             </li>

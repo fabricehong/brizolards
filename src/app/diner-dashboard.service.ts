@@ -1,29 +1,30 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import DinerAndContributions from './dtos/dinerAndContributions';
 import {forkJoin, Observable, of} from 'rxjs';
-import {mockContributions, mockDiner, mockParticipants} from './mocks/currentDiner';
 import IngredientItem from './dtos/ingredientItem';
 import {HttpClient} from "@angular/common/http";
-import {concatAll, map, switchMap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import Diner from "./models/diner";
 import Contribution from "./models/unitContribution";
 import Participant from "./models/participant";
 import ParticipationItem from "./dtos/participationItem";
 import ContributionItem from "./dtos/contributionItem";
 import Ingredient from "./models/ingredient";
+import {UsersService} from "./users.service";
+import {DinerService} from "./diner.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DinerService {
+export class DinerDashboardService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usersService: UsersService, private dinerService: DinerService) { }
 
   getCurrentDiner(): Observable<DinerAndContributions> {
 
-      const getDiner = this.http.get('api/diner');
+      const getDiner = this.dinerService.getDiner();
       const getContributions = this.http.get('api/contributions');
-      const getParticipants = this.http.get('api/participants');
+      const getParticipants = this.usersService.getUsers();
       return forkJoin(getDiner, getContributions, getParticipants).pipe(
           map(
               ([dinerRes, contributionsRed, participantsRes]) => {

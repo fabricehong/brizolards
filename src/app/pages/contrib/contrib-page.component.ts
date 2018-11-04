@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {DinerService} from '../../diner.service';
+import {DinerDashboardService} from '../../diner-dashboard.service';
 import DinerAndContributions from '../../dtos/dinerAndContributions';
 import {get, set} from 'idb-keyval';
 import {ModalController} from "@ionic/angular";
@@ -13,7 +13,7 @@ import {ContributeModalPage} from "../contribute-modal/contribute-modal.page";
 export class ContribPage implements OnInit, AfterViewInit {
     dinerAndContributions: DinerAndContributions;
     name: string;
-  constructor(private dinerService: DinerService, public modalController: ModalController) { }
+  constructor(private dinerService: DinerDashboardService, public modalController: ModalController) { }
 
   ngOnInit() {
       this.dinerService.getCurrentDiner().subscribe(dinner => this.dinerAndContributions = dinner);
@@ -34,10 +34,11 @@ export class ContribPage implements OnInit, AfterViewInit {
 
     }
 
-    async onContribute(ingredientId: string) {
+    async onContribute(ingredientId: string, recommendedQty: number) {
+      const qty = Math.max(0, recommendedQty);
         const modal = await this.modalController.create({
             component: ContributeModalPage,
-            componentProps: { ingredientId }
+            componentProps: { ingredientId, recommendedQty: qty }
         });
         return await modal.present();
     }
