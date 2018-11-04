@@ -12,6 +12,8 @@ import {CoreModule} from './pages/core/core.module';
 import {ProfilPageModule} from './pages/profil/profil.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,7 @@ import { environment } from '../environments/environment';
       AppRoutingModule,
       CoreModule,
       ProfilPageModule,
+      HttpClientModule,
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
