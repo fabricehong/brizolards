@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DinerService} from '../../diner.service';
+import DinerAndContributions from '../../dtos/dinerAndContributions';
 
 @Component({
   selector: 'app-map',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contrib-page.component.scss'],
 })
 export class ContribPage implements OnInit {
-    lat = 46.5196535;
-    lng = 6.6322734;
-  constructor() { }
+    dinerAndContributions: DinerAndContributions;
+  constructor(private dinerService: DinerService) { }
 
   ngOnInit() {
+      this.dinerService.getCurrentDiner().subscribe(dinner => this.dinerAndContributions = dinner);
   }
 }

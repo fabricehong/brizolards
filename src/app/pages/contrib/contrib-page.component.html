@@ -1,4 +1,14 @@
 <app-page title="Contributions">
-
-    ouais
+    <h1>{{dinerAndContributions.diner.name}}</h1>
+    <ul>
+        <li *ngFor="let ingredient of dinerAndContributions.diner.ingredients">
+            {{ingredient.name}}
+        </li>
+    </ul>
+    <div>Nombre de personnes: {{dinerAndContributions.participants.length}}</div>
+    <ul>
+        <li *ngFor="let participant of dinerAndContributions.participants">
+            {{participant.name}}
+        </li>
+    </ul>
 </app-page>

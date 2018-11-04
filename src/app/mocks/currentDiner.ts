@@ -1,8 +1,8 @@
-import DinerAndContributions from "../models/dinerAndContributions";
-import Diner from "../models/diner";
-import Contribution from "../models/contribution";
+import Diner from '../models/diner';
+import Contribution from '../models/contribution';
+import Participant from '../models/participant';
 
-const diner: Diner = {
+export const mockDiner: Diner = {
     id: 'xxx',
     name: 'mon diner',
     ingredients: [
@@ -25,9 +25,9 @@ const diner: Diner = {
             units: 'bouteille'
         },
     ]
-}
+};
 
-const contributions: Contribution[] = [
+export const mockContributions: Contribution[] = [
     {
         userId: 'p1',
         contribution: 2,
@@ -42,6 +42,13 @@ const contributions: Contribution[] = [
     },
 ];
 
-const CURRENT_DINER : DinerAndContributions = new DinerAndContributions(diner, contributions);
-
-export default CURRENT_DINER;
+export const mockParticipants: Participant[] = [
+    {
+        id: 'p1',
+        name: 'Fabrice',
+    },
+    {
+        id: 'p2',
+        name: 'Morgane',
+    },
+];
