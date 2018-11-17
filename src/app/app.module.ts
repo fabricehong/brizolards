@@ -14,7 +14,13 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {HttpClientModule} from '@angular/common/http';
-import {InMemoryDataService} from "./in-memory-data.service";
+import {InMemoryDataService} from './in-memory-data.service';
+import * as firebase from 'firebase';
+import {firebaseConfig} from '../environments/firebase.config';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+// firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +35,9 @@ import {InMemoryDataService} from "./in-memory-data.service";
       HttpClientInMemoryWebApiModule.forRoot(
           InMemoryDataService, { dataEncapsulation: false, delay: 500 }
       ),
+      AngularFireModule.initializeApp(firebaseConfig),
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+      AngularFireDatabaseModule,
   ],
   providers: [
     StatusBar,

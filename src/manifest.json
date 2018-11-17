@@ -1,6 +1,8 @@
 {
   "name": "Brizolards",
   "short_name": "Brizolards",
+//  "gcm_sender_id": "102081443217",
+  "gcm_sender_id": "103953800507",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

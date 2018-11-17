@@ -31,6 +31,7 @@
                 "input": "node_modules/@ionic/angular/dist/ionic/svg",
                 "output": "./svg"
               },
+              "src/firebase-messaging-sw.js",
               "src/manifest.json"
             ],
             "styles": [
@@ -101,6 +102,7 @@
                 "input": "src/assets",
                 "output": "/assets"
               },
+              "src/firebase-messaging-sw.js",
               "src/manifest.json"
             ]
           }
